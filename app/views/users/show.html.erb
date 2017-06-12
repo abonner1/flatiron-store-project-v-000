@@ -1,0 +1,15 @@
+<%= link_to "Cart", cart_path(current_user.current_cart) if current_user.current_cart %>
+<% if @orders %>
+  <h1>Orders:</h1>
+
+<% @orders.each do |order| %>
+  <p>Order# <%= order.id %></p>
+  <ul>
+    <% order.line_items.each do |line_item| %>
+      <li><%= line_item.item.title %> | <%= number_to_currency(line_item.item.price.to_f/100) %></li>
+    <% end %>
+  </ul>
+  <p>Order total: <strong><%= number_to_currency(order.total.to_f/100) %></strong> </p>
+<% end %>
+
+<% end %>

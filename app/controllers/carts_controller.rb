@@ -8,6 +8,7 @@ class CartsController < ApplicationController
     cart = Cart.find_by(id: params[:id])
     cart.checkout
     cart.save
+    current_user.delete_current_cart
     redirect_to cart_path(cart)
   end
 
